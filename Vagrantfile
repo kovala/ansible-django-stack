@@ -5,10 +5,11 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "precise64"
-  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  config.vm.box = "precise32"
+  config.vm.box_url = "http://files.vagrantup.com/precise32.box"
 
-  config.vm.network :private_network, ip: "192.168.33.15"
+  config.vm.network :private_network
+#  config.vm.network :private_network, ip: "192.168.33.15"
 
   config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm", :id, "--name", "MyCoolApp", "--memory", "512"]
@@ -19,9 +20,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #config.vm.synced_folder "../../../my-cool-app", "/webapps/mycoolapp/my-cool-app"
 
   # Ansible provisioner.
-  config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "vagrant.yml"
-    ansible.host_key_checking = false
-    ansible.verbose = "v"
-  end
+#  config.vm.provision "ansible" do |ansible|
+#    ansible.playbook = "vagrant.yml"
+#    ansible.host_key_checking = false
+#    ansible.verbose = "v"
+#  end
 end
